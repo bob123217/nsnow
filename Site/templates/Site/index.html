@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'style/style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Arimo&family=Open+Sans:wght@300;800&family=Staatliches&display=swap" rel="stylesheet">
+    <meta name='viewport' content="width=device-width, initial-scale=1">
+    <title></title>
+</head>
+<body>
+ <div class="blu"><!--DIV для размытия фона когда появляется форма-->
+    <div class="wrapper">
+        
+        <section class="first-block">
+            <span class="logo">n.snov</span>
+            <div class="greeting">
+                <h1>DESIGN</h1>
+                <p>Welcome to my site !</p>
+                <button class="write">Write me</button>
+            </div>
+        </section>
+
+        <section class="second-block">
+            <ul class="second-block__list">
+                <li class="second-block__item">
+                    <a href="{% url 'about' %}">About</a>
+                </li>
+                <li class="second-block__item">
+                    <a href="{% url 'progect' %}">My projects </a>
+                </li>
+                <li class="second-block__item">
+                    <a href="{% url 'contact' %}">Contacts</a>
+                </li>
+            </ul>
+            <svg width="392" height="438" viewBox="0 0 392 438" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M219 438C340.031 438 438 340.032 438 219.001C438 177.226 426.402 137.982 406.134 104.797L376.406 114.635L335.344 100.948C335.344 100.948 327.686 109.726 301.125 107.791C239.826 103.326 116.344 80.4167 116.344 80.4167C116.344 80.4167 186.763 82.1161 219 80.4167C241.842 79.0734 253.219 66.7288 253.219 66.7288H294.281L314.812 46.1976H349.031L354.164 46.6221C316.942 17.4245 270.03 0 219 0C97.9686 0 0 97.9673 0 218.998C0 228.306 0.585825 237.371 1.71094 246.373H34.2187L75.2812 232.685L116.344 246.373C116.344 246.373 124.001 237.594 150.562 239.529C211.861 243.994 335.344 266.904 335.344 266.904C335.344 266.904 264.924 265.205 232.688 266.904C209.846 268.247 198.469 280.592 198.469 280.592H157.406L136.875 301.122H102.656L82.125 314.81C63.9923 320.857 45.9448 321.37 23.0977 316.738C59.013 388.606 133.143 438 219 438Z" fill="#E6E6E6"/>
+             </svg>       
+        </section>
+
+    </div>
+</div>
+
+
+<!--ФОРМА ОТПРАВКИ ДАННЫХ-->
+ <section class="model-cloce">
+        <div class="header">
+            <h2>Write your contact details</h2>
+            <p>So that I can contact you</p>
+        </div>  
+    <form action="send/" method="POST">
+        {% csrf_token %}
+        <p>
+            <input class="login-icon-user" type="text" id="user-login" name="name" placeholder="Enter your name*">
+        </p>
+        <p>
+            <input class="password-icon-user" id="user-password" type="email" name="mail" placeholder="Enter your e-mail*">
+
+        </p>
+        <p class="login-password-info">
+                <input class="visually-hidden" id="inpita" type="number" name="namber" placeholder="Enter your phone number*" >
+        </p>
+        <button class="button button-log" type="submit">Send form</button>
+    </form>
+    <div class="modal-closi"><!--Крестик закрытия формы-->
+    </div>
+</section>
+<!--------------------------->
+
+<!--SCRIPT для формы-->
+<script>
+    var popap = document.querySelector('.model-cloce');
+    var blur = document.querySelector('.blu')
+    var openPopap = document.querySelector('.write'); 
+
+    var popapClice = document.querySelector('.modal-closi');
+
+    openPopap.addEventListener('click', function(evt){
+        evt.preventDefault();
+        popap.classList.add('model-open');
+        blur.classList.add('blur')
+    });
+
+    popapClice.addEventListener('click', function(evt){
+        evt.preventDefault();
+        popap.classList.remove('model-open');
+        blur.classList.remove('blur')
+    });
+</script>
+</body>
+</html>
